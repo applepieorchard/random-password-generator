@@ -113,7 +113,10 @@ function getPasswordOptions() {
 //    Make it ask you to pick at least one character type and go through confirms again
     }
   } else {
-//  Make it ask you to pick another number.
+    var tryAgain = confirm("You have not selected a valid number. Try again?")
+    if (tryAgain) {
+      getPasswordOptions()
+    }
   }
 }
 // getPasswordOptions()
