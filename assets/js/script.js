@@ -101,10 +101,14 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var lengthPrompt = prompt ("Enter your desired password length (Between 8 and 128)")
+  var lengthPrompt = prompt("Enter your desired password length (Between 8 and 128)")
   lengthAnswer = parseInt(lengthPrompt, 10)
   if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
-//  Continue with choice prompts.
+    var question = "Should your generated password contain"
+    var specialCharConfirm = confirm(`${question} special characters? (% @ !)`)
+    var numericCharConfirm = confirm(`${question} numbers? (1 2 3)`)
+    var upperCharConfirm = confirm(`${question} uppercase characters? (A B C)`)
+    var lowerCharConfirm = confirm(`${question} lowercase characters? (a b c)`)
   } else {
 //  Make it ask you to pick another number.
   }
