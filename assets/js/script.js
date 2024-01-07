@@ -103,20 +103,20 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
   var lengthPrompt = prompt("Enter your desired password length (Between 8 and 128)");
   lengthAnswer = parseInt(lengthPrompt, 10);
-  if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
-    var charConfirms = function() {
-      var question = "Should your generated password contain";
-      var specialCharConfirm = confirm(`${question} special characters? (%@!)`);
-      var numericCharConfirm = confirm(`${question} numbers? (123)`);
-      var upperCharConfirm = confirm(`${question} uppercase characters? (ABC)`);
-      var lowerCharConfirm = confirm(`${question} lowercase characters? (abc)`);
-      if (!specialCharConfirm && !numericCharConfirm && !upperCharConfirm && !lowerCharConfirm) {
-        var allFalse = confirm("You must select at least one character type. Try again?");
-        if (allFalse) {
-          charConfirms()
-        }
+  function charConfirms() {
+    var question = "Should your generated password contain";
+    var specialCharConfirm = confirm(`${question} special characters? (%@!)`);
+    var numericCharConfirm = confirm(`${question} numbers? (123)`);
+    var upperCharConfirm = confirm(`${question} uppercase characters? (ABC)`);
+    var lowerCharConfirm = confirm(`${question} lowercase characters? (abc)`);
+    if (!specialCharConfirm && !numericCharConfirm && !upperCharConfirm && !lowerCharConfirm) {
+      var allFalse = confirm("You must select at least one character type. Try again?");
+      if (allFalse) {
+        charConfirms()
       }
-    };
+    }
+  };
+  if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
     charConfirms()
   } else {
     var tryAgain = confirm("You have not selected a valid number. Try again?");
