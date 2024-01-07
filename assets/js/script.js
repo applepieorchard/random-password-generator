@@ -101,25 +101,31 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var lengthPrompt = prompt("Enter your desired password length (Between 8 and 128)")
-  lengthAnswer = parseInt(lengthPrompt, 10)
+  var lengthPrompt = prompt("Enter your desired password length (Between 8 and 128)");
+  lengthAnswer = parseInt(lengthPrompt, 10);
   if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
-    var question = "Should your generated password contain"
-    var specialCharConfirm = confirm(`${question} special characters? (%@!)`)
-    var numericCharConfirm = confirm(`${question} numbers? (123)`)
-    var upperCharConfirm = confirm(`${question} uppercase characters? (ABC)`)
-    var lowerCharConfirm = confirm(`${question} lowercase characters? (abc)`)
-    if (!specialCharConfirm && !numericCharConfirm && !upperCharConfirm && !lowerCharConfirm) {
-//    Make it ask you to pick at least one character type and go through confirms again
-    }
+    var charConfirms = function() {
+      var question = "Should your generated password contain";
+      var specialCharConfirm = confirm(`${question} special characters? (%@!)`);
+      var numericCharConfirm = confirm(`${question} numbers? (123)`);
+      var upperCharConfirm = confirm(`${question} uppercase characters? (ABC)`);
+      var lowerCharConfirm = confirm(`${question} lowercase characters? (abc)`);
+      if (!specialCharConfirm && !numericCharConfirm && !upperCharConfirm && !lowerCharConfirm) {
+        var allFalse = confirm("You must select at least one character type. Try again?");
+        if (allFalse) {
+          charConfirms()
+        }
+      }
+    };
+    charConfirms()
   } else {
-    var tryAgain = confirm("You have not selected a valid number. Try again?")
+    var tryAgain = confirm("You have not selected a valid number. Try again?");
     if (tryAgain) {
       getPasswordOptions()
     }
   }
 }
-// getPasswordOptions()
+getPasswordOptions()
 
 // Function for getting a random element from an array
 function getRandom(arr) {
