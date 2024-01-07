@@ -26,7 +26,18 @@ var specialCharacters = [
 ];
 
 // Array of numeric characters to be included in password
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var numericCharacters = [
+  '0', 
+  '1', 
+  '2', 
+  '3', 
+  '4', 
+  '5', 
+  '6', 
+  '7', 
+  '8', 
+  '9'
+];
 
 // Array of lowercase characters to be included in password
 var lowerCasedCharacters = [
@@ -90,8 +101,15 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  var lengthPrompt = prompt ("Enter your desired password length (Between 8 and 128)")
+  lengthAnswer = parseInt(lengthPrompt, 10)
+  if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
+//  Continue with choice prompts.
+  } else {
+//  Make it ask you to pick another number.
+  }
 }
+// getPasswordOptions()
 
 // Function for getting a random element from an array
 function getRandom(arr) {
