@@ -26,7 +26,18 @@ var specialCharacters = [
 ];
 
 // Array of numeric characters to be included in password
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var numericCharacters = [
+  '0', 
+  '1', 
+  '2', 
+  '3', 
+  '4', 
+  '5', 
+  '6', 
+  '7', 
+  '8', 
+  '9'
+];
 
 // Array of lowercase characters to be included in password
 var lowerCasedCharacters = [
@@ -90,8 +101,31 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  var lengthPrompt = prompt("Enter your desired password length (Between 8 and 128)");
+  lengthAnswer = parseInt(lengthPrompt, 10);
+  function charConfirms() {
+    var question = "Should your generated password contain";
+    var specialCharConfirm = confirm(`${question} special characters? (%@!)`);
+    var numericCharConfirm = confirm(`${question} numbers? (123)`);
+    var upperCharConfirm = confirm(`${question} uppercase characters? (ABC)`);
+    var lowerCharConfirm = confirm(`${question} lowercase characters? (abc)`);
+    if (!specialCharConfirm && !numericCharConfirm && !upperCharConfirm && !lowerCharConfirm) {
+      var allFalse = confirm("You must select at least one character type. Try again?");
+      if (allFalse) {
+        charConfirms()
+      }
+    }
+  };
+  if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
+    charConfirms()
+  } else {
+    var tryAgain = confirm("You have not selected a valid number. Try again?");
+    if (tryAgain) {
+      getPasswordOptions()
+    }
+  }
 }
+// getPasswordOptions()
 
 // Function for getting a random element from an array
 function getRandom(arr) {
