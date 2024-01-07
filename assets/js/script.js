@@ -105,10 +105,13 @@ function getPasswordOptions() {
   lengthAnswer = parseInt(lengthPrompt, 10)
   if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
     var question = "Should your generated password contain"
-    var specialCharConfirm = confirm(`${question} special characters? (% @ !)`)
-    var numericCharConfirm = confirm(`${question} numbers? (1 2 3)`)
-    var upperCharConfirm = confirm(`${question} uppercase characters? (A B C)`)
-    var lowerCharConfirm = confirm(`${question} lowercase characters? (a b c)`)
+    var specialCharConfirm = confirm(`${question} special characters? (%@!)`)
+    var numericCharConfirm = confirm(`${question} numbers? (123)`)
+    var upperCharConfirm = confirm(`${question} uppercase characters? (ABC)`)
+    var lowerCharConfirm = confirm(`${question} lowercase characters? (abc)`)
+    if (!specialCharConfirm && !numericCharConfirm && !upperCharConfirm && !lowerCharConfirm) {
+//    Make it ask you to pick at least one character type and go through confirms again
+    }
   } else {
 //  Make it ask you to pick another number.
   }
