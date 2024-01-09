@@ -79,7 +79,12 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-
+  var password = "";
+  getPasswordOptions(); 
+  for (let i = 0; i < passwordLength; i++) {
+   password += getRandom(chosenChars)[i]
+  } 
+  return password;
 };
 
 // Get references to the #generate element
