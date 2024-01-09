@@ -62,11 +62,12 @@ function getPasswordOptions() {
       } if (lowerCharConfirm) {
         chars.push(lowerCasedCharacters)
       }
-    } return choices = chars
+    }
+    chosenChars = chars
   };
   if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
     charConfirms()
-    return passwordLength = lengthAnswer, chosenChars = choices
+    passwordLength = lengthAnswer
   } else {
     var tryAgain = confirm("You have not selected a valid number. Try again?");
     if (tryAgain) {
