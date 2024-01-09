@@ -36,9 +36,10 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
   var lengthPrompt = prompt("Enter your desired password length (Between 8 and 128)");
-  lengthAnswer = parseInt(lengthPrompt, 10);
+  var lengthAnswer = parseInt(lengthPrompt, 10);
+  var question = "Should your generated password contain";
   function charConfirms() {
-    var question = "Should your generated password contain";
+    var chars = [];
     var specialCharConfirm = confirm(`${question} special characters? (%@!)`);
     var numericCharConfirm = confirm(`${question} numbers? (123)`);
     var upperCharConfirm = confirm(`${question} uppercase characters? (ABC)`);
@@ -48,28 +49,38 @@ function getPasswordOptions() {
       if (allFalse) {
         charConfirms()
       }
-    }
+    } else { 
+      if (specialCharConfirm) {
+        chars.push(specialCharacters)
+      } if (numericCharConfirm) {
+        chars.push(numericCharacters)
+      } if (upperCharConfirm) {
+        chars.push(upperCasedCharacters)
+      } if (lowerCharConfirm) {
+        chars.push(lowerCasedCharacters)
+      }
+    } return choices = chars
   };
   if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
     charConfirms()
+    return passwordLength = lengthAnswer, chosenChars = choices
   } else {
     var tryAgain = confirm("You have not selected a valid number. Try again?");
     if (tryAgain) {
       getPasswordOptions()
     }
   }
-}
-// getPasswordOptions()
+};
 
 // Function for getting a random element from an array
 function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)]
-}
+};
 
 // Function to generate password with user input
 function generatePassword() {
-  
-}
+
+};
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
