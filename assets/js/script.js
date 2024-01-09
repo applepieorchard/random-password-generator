@@ -33,6 +33,9 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+var chosenChars;
+var passwordLength;
+
 // Function to prompt user for password options
 function getPasswordOptions() {
   var lengthPrompt = prompt("Enter your desired password length (Between 8 and 128)");
@@ -51,19 +54,22 @@ function getPasswordOptions() {
       }
     } else { 
       if (specialCharConfirm) {
-        chars.push(specialCharacters)
-      } if (numericCharConfirm) {
-        chars.push(numericCharacters)
-      } if (upperCharConfirm) {
-        chars.push(upperCasedCharacters)
-      } if (lowerCharConfirm) {
-        chars.push(lowerCasedCharacters)
+        chars = chars.concat(specialCharacters);
       }
-    } return choices = chars
+      if (numericCharConfirm) {
+        chars = chars.concat(numericCharacters);
+      }
+      if (upperCharConfirm) {
+        chars = chars.concat(upperCasedCharacters);
+      }
+      if (lowerCharConfirm) {
+        chars = chars.concat(lowerCasedCharacters);
+      }
+    } chosenChars = chars
   };
   if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
     charConfirms()
-    return passwordLength = lengthAnswer, chosenChars = choices
+    passwordLength = lengthAnswer
   } else {
     var tryAgain = confirm("You have not selected a valid number. Try again?");
     if (tryAgain) {
@@ -79,10 +85,10 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  var password = "";
   getPasswordOptions(); 
+  var password = "";
   for (let i = 0; i < passwordLength; i++) {
-   password += getRandom(chosenChars)[i]
+   password += getRandom(chosenChars)
   } 
   return password;
 };
