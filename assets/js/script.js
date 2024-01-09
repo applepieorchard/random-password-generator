@@ -54,16 +54,18 @@ function getPasswordOptions() {
       }
     } else { 
       if (specialCharConfirm) {
-        chars.push(specialCharacters)
-      } if (numericCharConfirm) {
-        chars.push(numericCharacters)
-      } if (upperCharConfirm) {
-        chars.push(upperCasedCharacters)
-      } if (lowerCharConfirm) {
-        chars.push(lowerCasedCharacters)
+        chars = chars.concat(specialCharacters);
       }
-    }
-    chosenChars = chars
+      if (numericCharConfirm) {
+        chars = chars.concat(numericCharacters);
+      }
+      if (upperCharConfirm) {
+        chars = chars.concat(upperCasedCharacters);
+      }
+      if (lowerCharConfirm) {
+        chars = chars.concat(lowerCasedCharacters);
+      }
+    } chosenChars = chars
   };
   if (lengthAnswer >= 8 && lengthAnswer <= 128 ) {
     charConfirms()
@@ -83,10 +85,10 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  var password = "";
   getPasswordOptions(); 
+  var password = "";
   for (let i = 0; i < passwordLength; i++) {
-   password += getRandom(chosenChars)[i]
+   password += getRandom(chosenChars)
   } 
   return password;
 };
